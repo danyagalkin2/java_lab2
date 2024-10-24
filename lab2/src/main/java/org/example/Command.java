@@ -6,6 +6,12 @@ import java.util.Arrays;
 public class Command {
     private String[] command = new String[3];
 
+    @Override
+    public String toString() {
+
+        return command[0];
+    }
+
     public Command(String s){
         this.command = s.split(" ");
     }

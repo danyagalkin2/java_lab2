@@ -9,16 +9,24 @@ import java.util.Map;
 public class Main {
     public static void main(String[] args) {
 
-        Command [] prog = {
-                new Command("init 10 20"),
-                new Command("init" ,"11", "25"),
-                new Command("ld", "r1" ,"10"),
-                new Command("ld", "r2" ,"11"),
-                new Command("add"),
-                new Command("print")}; //вывод 20 25 * 45
+        Program prog = new Program();
+        prog.Add(new Command("init 10 20"));
+        prog.Add(new Command("init 11 25"));
+        prog.Add(new Command("init" ,"12", "5"));
+        prog.Add(new Command("ld", "r1" ,"10"));
+        prog.Add(new Command("ld", "r2" ,"11"));
+        prog.Add(new Command("ld", "r3" ,"12"));
+        prog.Add(new Command("add"));
+        prog.Add(new Command("print"));
+        prog.Add(new Command("mv", "r1" ,"r4"));
+        prog.Add(new Command("mv", "r2" ,"r3"));
+        prog.Add(new Command("div"));
+        prog.Add(new Command("print"));
+        for(Command c: prog) System.out.println(c);
+        System.out.println("Самая популярная команда: " + prog.mostPopularInstruction());
+        prog.printSortProg();
 
         Executer exec = new Executer();
         exec.run(prog);
-
     }
 }

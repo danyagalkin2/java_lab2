@@ -6,10 +6,11 @@ import org.example.cpu.ICpu;
 public class Executer {
     ICpu icpu = BCpu.build();
 
-    public void run(Command[] commands){
+    public void run(Program prog){
 
-        for (int i = 0; i <commands.length;i++){
-            icpu.exec(commands[i]);
+        for(Command c: prog)
+            icpu.exec(c);
+
 
         }
 
@@ -20,4 +21,4 @@ public class Executer {
 
 
 
-}
+
