@@ -23,9 +23,9 @@ public class Main {
         prog.Add(new Command("div"));
         prog.Add(new Command("print"));
         for(Command c: prog) System.out.println(c);
-        System.out.println("Самая популярная команда: " + prog.mostPopularInstruction());
+        System.out.println("\n" + "Самая популярная команда: " + prog.mostPopularInstruction() + "\n");
         prog.printSortProg();
-
+        prog.memoryAddressRange();
         Executer exec = new Executer();
         exec.run(prog);
     }

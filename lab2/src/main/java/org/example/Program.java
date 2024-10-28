@@ -16,7 +16,7 @@ public class Program implements Iterable<Command>{
         return prog.iterator();
     }
 
-    Set<String> getUniqueProg() {
+    public Set<String> getUniqueProg() {
         Set<String> uProg = new HashSet<>();
         for (Command c : prog) {
             uProg.add(c.get_name());
@@ -24,7 +24,7 @@ public class Program implements Iterable<Command>{
         return uProg;
     }
 
-    LinkedHashMap<String,Integer> countProg(){
+    public LinkedHashMap<String,Integer> countProg(){
         HashMap<String,Integer> mapProg = new HashMap<>();
         Set<String> uProg = getUniqueProg();
         for(String s: uProg){
@@ -45,7 +45,7 @@ public class Program implements Iterable<Command>{
         return sortedMapProg;
     }
 
-    String mostPopularInstruction(){
+    public String mostPopularInstruction(){
         LinkedHashMap<String, Integer> sortedMapProg = countProg();
         Iterator<HashMap.Entry<String,Integer>> iterator = sortedMapProg.entrySet().iterator();
         HashMap.Entry<String, Integer> result = null;
@@ -56,13 +56,31 @@ public class Program implements Iterable<Command>{
         //return sortedMapProg.keySet().iterator().next();
     }
 
-    void printSortProg(){
+    public void printSortProg(){
         LinkedHashMap<String, Integer> sortedMapProg = countProg();
         for (Map.Entry<String, Integer> entry : sortedMapProg.entrySet()) {
             String key = entry.getKey();
             Integer value = entry.getValue();
             System.out.println("Команда: " + key + " выполнилась: " + value + " раз");
         }
+    }
+
+    public void memoryAddressRange(){
+        int maxRange = 0, minRange = 0;
+        for (Command c : prog) {
+            if(Objects.equals(c.get_name(), "init")){
+                if( maxRange == 0 && minRange == 0){
+                    maxRange = minRange = c.get_val1();
+                }else{
+                    if(c.get_val1() < minRange){
+                        minRange = c.get_val1();
+                    }else if (maxRange < c.get_val1()){
+                        maxRange = c.get_val1();
+                    }
+                }
+            }
+        }
+        System.out.println("В программе используются адреса в диапазоне от " + minRange + " до " + maxRange);
     }
 
 
