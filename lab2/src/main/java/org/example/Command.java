@@ -8,7 +8,6 @@ public class Command {
 
     @Override
     public String toString() {
-
         return command[0];
     }
 
